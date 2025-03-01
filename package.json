@@ -14,5 +14,8 @@
   "type": "commonjs",
   "devDependencies": {
     "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@cloudflare/speedtest": "^1.4.1"
   }
 }

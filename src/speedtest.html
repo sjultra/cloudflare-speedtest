@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test Cloudflare Speedtest UMD</title>
+    </head>
+    <body>
+        <h1>Testing Cloudflare Speedtest UMD Build</h1>
+
+        <!-- Load the UMD build created by vite from dist/ -->
+        <script src="./cloudflare-speedtest.umd.js"></script>
+        <!-- Now window.CloudflareSpeedTest is available -->
+
+        <!-- Create new SpeedTest instance and gather timing results in window.SpeedTestResults -->
+        <script>
+            window.SpeedTestResults = null;
+            window.SpeedTestError = null;
+
+            const test = new window.CloudflareSpeedTest();
+
+            test.onFinish = (results) => {
+                console.log("Test finished.\nSummary:", results.getSummary());
+                window.SpeedTestResults = results.getSummary();
+
+            };
+
+            test.onError = (err) => {
+                window.SpeedTestError = err;
+            };
+
+            // Explicitly play just in case auto-start is disabled
+            test.play();
+        </script>
+    </body>
+</html>
+

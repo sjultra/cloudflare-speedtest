@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speedtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speedtest
+  template:
+    metadata:
+      labels:
+        app: speedtest
+    spec:
+      initContainers:
+        - name: influxdb-wait
+          image: busybox:1.34.0
+          command: ["sh", "-c", "until nslookup influxdb; do sleep 2; done"]
+      containers:
+        - name: speedtest
+          image: {{ .Values.speedtest.image }}
+          env:
+            - name: SPEEDTEST_INTERVAL
+              value: "{{ .Values.speedtest.interval }}"
+            - name: SPEEDTEST_HOST
+              value: "{{ .Values.speedtest.host }}"

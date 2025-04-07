@@ -1,0 +1,4 @@
+apiVersion: v2
+name: speedtest-chart
+version: 0.1.0
+description: A Helm chart for deploying Speedtest with InfluxDB and Grafana

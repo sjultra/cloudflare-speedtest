@@ -63,7 +63,7 @@ const getSpeedMetrics = async (browser:Browser): Promise<SpeedMetrics | null>  =
 
 };
 
-function convertBitsToMbps(metrics: SpeedMetrics): SpeedMetrics {
+const convertBitsToMbps = (metrics: SpeedMetrics): SpeedMetrics => {
     return {
         ...metrics,
         download: bitToMbps(metrics.download),
